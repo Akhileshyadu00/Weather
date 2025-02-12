@@ -5,29 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Report</title>
     <link rel="stylesheet" href="style.css">
+    <link href="./src/output.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <div class="weather-input">
-            <div class="input-group">
-                <input type="text" name="" id="user-location" placeholder="Search for location">
-                <select name="" class="converter" id="converter">
-                    <option value="">°C</option>
-                    <option value="">°F</option>
-                </select>
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-            <div class="weather-icon">
-                <h2 class="temperature"></h2>
-                <div class="feel-like"></div>
-                <div class="description"></div>
-                <hr>
-                <div class="date"></div>
-                <div class="city"></div>
+    <body class="flex items-center justify-center min-h-screen bg-gray-900 text-white">
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md">
+            <div class="weather-input">
+                <div class="flex items-center gap-2 mb-4">
+                    <input type="text" id="user-location" placeholder="Search for location"
+                        class="w-full p-2 rounded-lg bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <select id="converter"
+                        class="p-2 bg-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="C">°C</option>
+                        <option value="F">°F</option>
+                    </select>
+                    <button class="p-2 bg-blue-600 hover:bg-blue-700 rounded-lg">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                <div class="text-center">
+                    <h2 class="temperature text-4xl font-bold"></h2>
+                    <div class="feel-like text-lg"></div>
+                    <div class="description text-gray-300"></div>
+                    <hr class="my-2 border-gray-600">
+                    <div class="date text-sm text-gray-400"></div>
+                    <div class="city text-xl font-semibold mt-2"></div>
+                </div>
             </div>
         </div>
-    </div>
 </body>
 </html>
