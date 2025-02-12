@@ -4,8 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Report</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="weather-input">
+            <div class="input-group">
+                <input type="text" name="" id="user-location" placeholder="Search for location">
+                <select name="" class="converter" id="converter">
+                    <option value="">°C</option>
+                    <option value="">°F</option>
+                </select>
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="weather-icon">
+                <h2 class="temperature"></h2>
+                <div class="feel-like"></div>
+                <div class="description"></div>
+                <hr>
+                <div class="date"></div>
+                <div class="city"></div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
