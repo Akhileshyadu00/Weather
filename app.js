@@ -1,6 +1,7 @@
 // Selecting DOM Elements
 const userLocation = document.getElementById("user-location");
 const converter = document.getElementById("converter");
+const weatherIcon = document.querySelector(".weatherIcon");
 const temperature = document.querySelector(".temperature");
 const feelslike = document.querySelector(".feel-like");
 const description = document.querySelector(".description");
