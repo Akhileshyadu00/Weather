@@ -1,3 +1,6 @@
+
+
+
 const userLocation = document.getElementById("user-location");
 const converter = document.getElementById("converter");
 const weatherIcon = document.querySelector(".weather-icon");
