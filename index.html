@@ -3,88 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Report</title>
+    <title>Weather Forecast App</title>
     <link href="./src/output.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
-<body class="h-screen flex flex-col items-center justify-center bg-gray-900 text-white p-6">
+<body class="min-h-screen flex flex-col items-center justify-center bg-gray-300 text-gray-800 p-6">
 
-    <div class="w-full max-w-4xl">
+    <div class="w-full max-w-6xl">
 
-        <!-- Search & Current Weather -->
-        <div class="bg-gray-800 p-6 rounded-lg shadow-lg text-center">
-            <div class="flex items-center bg-gray-700 p-3 rounded-lg">
-                <input type="text" id="user-location" placeholder="Search for location"
-                    class="w-full bg-transparent text-white placeholder-gray-400 outline-none p-2" aria-label="Search for location">
-                <select id="converter" class="bg-gray-700 text-white cursor-pointer ml-4 p-1 rounded-lg">
-                    <option value="C">°C</option>
-                    <option value="F">°F</option>
-                </select>
-                <button id="search-btn" type="button" class="ml-3 text-white">
-                    <i class="fa-solid fa-magnifying-glass" onclick="findUserLocation()"></i>
+        <!-- Search Section -->
+        <div class="bg-white p-6 rounded-lg shadow-lg text-center mx-auto flex flex-col items-center">
+            <div class="flex items-center justify-center bg-gray-200 p-3 rounded-lg w-full max-w-2xl mx-auto">
+                <input type="text" id="cityInput" placeholder="Search for location" autocomplete="off"
+                    class="w-1/2 bg-transparent text-gray-800 placeholder-gray-500 outline-none p-2 text-center" 
+                    aria-label="Search for location">
+                <button id="searchBtn" class="ml-3 text-gray-800 hover:text-gray-600 transition">
+                    <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
+        
+        
+
+            <button id="currentLocationBtn" class="bg-blue-500 text-white px-4 py-2 mt-4 rounded-lg hover:bg-blue-900 transition">
+                Use Current Location
+            </button>
+
+            <!-- Recent Cities Dropdown -->
+            <select id="recentCities" class="border bg-gray-300 text-gray-800 p-2 w-60 rounded mt-4 hidden"></select>
 
             <div class="mt-4">
                 <div class="weatherIcon mx-auto w-20 h-20 bg-center bg-contain"></div>
-                <h2 class="temperature text-4xl font-bold" data-temp-c=""></h2>
-                <div class="feel-like text-lg"></div>
-                <div class="description text-gray-300"></div>
-                <hr class="my-2 border-gray-600">
-                <div class="date text-sm text-gray-400"></div>
-                <div class="city text-xl font-semibold mt-2"></div>
+                <h2 id="temperature" class="text-4xl font-bold"></h2>
+                <p id="feel-like" class="text-lg"></p>
+                <p id="description" class="text-gray-600"></p>
+                <hr class="my-2 border-gray-300">
+                <p id="date" class="text-sm text-gray-500"></p>
+                <h2 id="location" class="text-xl font-semibold mt-2"></h2>
             </div>
         </div>
 
         <!-- Weather Highlights -->
-        <div class="bg-gray-800 p-6 mt-6 rounded-lg shadow-lg">
-            <h2 class="text-lg font-bold text-blue-400 mb-3">Today's Highlights</h2>
+        <div class="bg-white p-6 mt-6 rounded-lg shadow-lg">
+            <h2 class="text-lg font-bold text-blue-600 mb-3 text-center">Today's Highlights</h2>
 
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
                 <!-- Humidity -->
-                <div class="h-40 flex flex-col items-center justify-center bg-blue-400 rounded-xl p-4 shadow-lg">
-                    <i class="fa-solid fa-water text-white text-5xl"></i>
-                    <h3 class="text-lg font-semibold text-white">Humidity</h3>
-                    <h1 id="Hvalue" class="text-2xl font-bold text-white"></h1>
+                <div class="h-40 flex flex-col items-center justify-center bg-blue-100 rounded-xl p-4 shadow-lg">
+                    <i class="fa-solid fa-water text-blue-600 text-5xl"></i>
+                    <h3 class="text-lg font-semibold text-gray-700">Humidity</h3>
+                    <h1 id="Hvalue" class="text-2xl font-bold text-gray-900"></h1>
                 </div>
 
                 <!-- Wind Speed -->
-                <div class="h-40 flex flex-col items-center justify-center bg-blue-400 rounded-xl p-4 shadow-lg">
-                    <i class="fa-solid fa-wind text-white text-5xl"></i>
-                    <h3 class="text-lg font-semibold text-white">Wind Speed</h3>
-                    <h1 id="Wvalue" class="text-2xl font-bold text-white"></h1>
+                <div class="h-40 flex flex-col items-center justify-center bg-blue-100 rounded-xl p-4 shadow-lg">
+                    <i class="fa-solid fa-wind text-blue-600 text-5xl"></i>
+                    <h3 class="text-lg font-semibold text-gray-700">Wind Speed</h3>
+                    <h1 id="Wvalue" class="text-2xl font-bold text-gray-900"></h1>
                 </div>
 
-             
+                <!-- Sunrise & Sunset -->
+                <div class="h-40 flex flex-col items-center justify-center bg-yellow-100 rounded-xl p-4 shadow-lg">
+                    <h3 class="text-lg font-semibold text-gray-700">Sunrise & Sunset</h3>
+                    <div class="flex justify-center gap-6 mt-2">
+                        <div class="flex flex-col items-center">
+                            <i class="fa-solid fa-sun text-yellow-500 text-5xl"></i>
+                            <p id="SRValue" class="text-xl text-gray-900">Sunrise</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <i class="fa-regular fa-sun text-orange-500 text-5xl"></i>
+                            <p id="SSValue" class="text-xl text-gray-900">Sunset</p>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Cloudiness -->
-                <div class="h-40 flex flex-col items-center justify-center bg-blue-400 rounded-xl p-4 shadow-lg">
-                    <i class="fa-solid fa-cloud text-white text-5xl"></i>
-                    <h3 class="text-lg font-semibold text-white">Cloudiness</h3>
-                    <h1 id="Cvalue" class="text-2xl font-bold text-white"></h1>
+                <div class="h-40 flex flex-col items-center justify-center bg-gray-200 rounded-xl p-4 shadow-lg">
+                    <i class="fa-solid fa-cloud text-gray-600 text-5xl"></i>
+                    <h3 class="text-lg font-semibold text-gray-700">Cloudiness</h3>
+                    <h1 id="Cvalue" class="text-2xl font-bold text-gray-900"></h1>
                 </div>
-
-              
 
                 <!-- Pressure -->
-                <div class="h-40 flex flex-col items-center justify-center bg-blue-400 rounded-xl p-4 shadow-lg">
-                    <i class="fa-solid fa-mountain text-white text-5xl"></i>
-                    <h3 class="text-lg font-semibold text-white">Pressure</h3>
-                    <h1 id="Pvalue" class="text-2xl font-bold text-white"></h1>
+                <div class="h-40 flex flex-col items-center justify-center bg-green-100 rounded-xl p-4 shadow-lg">
+                    <i class="fa-solid fa-mountain text-green-600 text-5xl"></i>
+                    <h3 class="text-lg font-semibold text-gray-700">Pressure</h3>
+                    <h1 id="Pvalue" class="text-2xl font-bold text-gray-900"></h1>
                 </div>
             </div>
 
-            <h2 class="text-lg font-bold text-blue-400 mt-6">This Week</h2>
-            <!-- Future weekly forecast will be added here -->
-            <div id="forecast" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 mt-4">
-                <!-- Forecast cards will be injected here dynamically -->
+            <!-- Forecast Section -->
+            <h2 class="text-lg font-bold text-blue-600 mt-6 text-center">5 Days Forecast</h2>
+            <div id="forecast" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 mt-4">
+                <!-- Forecast cards will be dynamically injected here -->
             </div>
-            
         </div>
 
+        <!-- Error Message -->
+        <p id="errorMessage" class="text-red-500 mt-4 hidden"></p>
+
     </div>
-   
-    <script src="script.js" defer></script>
+
+    <script src="app.js" defer></script>
 </body>
 </html>
