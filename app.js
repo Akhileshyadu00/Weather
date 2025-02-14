@@ -32,7 +32,7 @@ const loadRecentCities = () => {
     recentCitiesDropdown.innerHTML = cities.length > 0
         ? `<option>Select a city</option>` + cities.map(city => `<option>${city}</option>`).join("")
         : "";
-    recentCitiesDropdown.classList.toggle("hidden", cities.length === 0);
+    recentCitiesDropdown.classList.toggle("hidden", cities.length === 0);  //notany dropdown if there is no searched city.
 };
 
 // Fetch weather data
@@ -104,7 +104,7 @@ const fetchForecast = async (city) => {
             const date = new Date(day.dt_txt).toDateString();
             forecastContainer.innerHTML += `
                 <div class="bg-gray-500 p-3 rounded-lg text-center shadow-lg">
-                    <p class="font-semibold text-white">${date}</p>
+                    <p class="font-bold text-white">${date}</p>
                     <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}.png" class="mx-auto" alt="Weather">
                     <p>🌡️ ${day.main.temp}°C</p>
                     <p>💧 ${day.main.humidity}%</p>
