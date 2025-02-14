@@ -20,7 +20,6 @@ const humidityEl = document.getElementById("Hvalue");
 const windSpeedEl = document.getElementById("Wvalue");
 const cloudinessEl = document.getElementById("Cvalue");
 const pressureEl = document.getElementById("Pvalue");
-const uvIndexEl = document.getElementById("UVvalue");
 const sunriseEl = document.getElementById("SRValue");
 const sunsetEl = document.getElementById("SSValue");
 
