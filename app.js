@@ -124,7 +124,7 @@ searchBtn.addEventListener("click", () => {
     if (city) fetchWeather(city);
 });
 
-// Get user's current location
+// Get user's current location   ----------->  wait for few second, api takes time to fetch current location
 currentLocationBtn.addEventListener("click", () => {
     navigator.geolocation.getCurrentPosition(async (position) => {
         try {
@@ -153,3 +153,6 @@ recentCitiesDropdown.addEventListener("change", () => {
 
 // Load recent cities on page load
 loadRecentCities();
+
+
+// Wait for few second for current loacation's weather
